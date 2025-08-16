@@ -5,7 +5,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build("resume-app")
+                    def dockerImage = docker.build("resume-app")
                 }
             }
         }
@@ -13,7 +13,7 @@ pipeline {
         stage('Run Container') {
             steps {
                 script {
-                    dockerImage.run("-p 8080:80")
+                    docker.image("resume-app").run("-p 8081:80")
                 }
             }
         }
